@@ -1,0 +1,40 @@
+version: '3.0'
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:17
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    networks:
+      - market_place
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${MINIO_API_PORT}:9000
+      - ${MINIO_WEB_UI_PORT}:9001
+    volumes:
+      - minio_data:/data/s3
+    networks:
+      - market_place
+    command: server /data/s3 --console-address ":9001"
+
+
+volumes:
+  postgres-db:
+  minio_data:
+
+networks:
+  market_place:
+    driver: bridge
