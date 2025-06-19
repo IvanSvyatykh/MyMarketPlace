@@ -11,14 +11,14 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 
-class GoodCategory(Base):
+class GoodCategoryModel(Base):
     __tablename__ = "good_category"
     __table_args__ = {"schema": "goods"}
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String(254), nullable=False, unique=True)
 
 
-class Goods(Base):
+class GoodsModel(Base):
     __tablename__ = "goods"
     __table_args__ = {"schema": "goods"}
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
