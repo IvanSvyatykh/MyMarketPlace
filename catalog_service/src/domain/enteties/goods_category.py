@@ -3,13 +3,9 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Good:
+class GoodCategory:
     id: uuid.UUID | None
-    category_name: str
     name: str
-    photo_url: str | None
-    price: float
-    amount: int
 
     def __post_init__(self):
         if self.id is None:

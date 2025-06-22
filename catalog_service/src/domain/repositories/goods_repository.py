@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..agregates.good import Good
+from ..enteties.good import Good
+from ..agregates.good import Good as GoodAggregate
 
 
 class GoodsRepositoryInterface(ABC):
@@ -10,5 +11,9 @@ class GoodsRepositoryInterface(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def get_goods(self, offset: int, limit: int) -> list[Good]:
-        pass
+    async def get_goods(self, offset: int, limit: int) -> list[GoodAggregate]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def add_good(self, good: Good) -> None:
+        raise NotImplementedError()
