@@ -1,6 +1,6 @@
-from catalog_service.src.presentation.rest.schemas.goods import GetGoodsRequest
-from catalog_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
-from catalog_service.src.presentation.rest.schemas.goods import GetGoodsResponse
+from goods_service.src.presentation.rest.schemas.goods import GetGoodsRequest
+from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
+from goods_service.src.presentation.rest.schemas.goods import GetGoodsResponse
 
 
 class GetGoodsQuery:

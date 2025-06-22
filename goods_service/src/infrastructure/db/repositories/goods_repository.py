@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, insert, update, delete
-from catalog_service.src.domain.enteties.good import Good
-from catalog_service.src.domain.agregates.good import Good as GoodAggregate
+from goods_service.src.domain.enteties.good import Good
+from goods_service.src.domain.agregates.good import Good as GoodAggregate
 from ..models.model import GoodsModel, GoodCategoryModel
-from catalog_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
+from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
 
 
 class SQLAlchemyGoodsRepository(GoodsRepositoryInterface):

@@ -1,8 +1,8 @@
-from catalog_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
-from catalog_service.src.presentation.rest.schemas.goods import AddGoodRequest
-from catalog_service.src.domain.enteties.good import Good
-from catalog_service.src.domain.repositories.goods_category_repository import GoodsCategoryRepositoryInterface
-from catalog_service.src.domain.exceptions.goods_exceptions import CategoryNotFound
+from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
+from goods_service.src.presentation.rest.schemas.goods import AddGoodRequest
+from goods_service.src.domain.enteties.good import Good
+from goods_service.src.domain.repositories.goods_category_repository import GoodsCategoryRepositoryInterface
+from goods_service.src.domain.exceptions.goods_exceptions import CategoryNotFound
 
 
 class AddGoodsCommand:

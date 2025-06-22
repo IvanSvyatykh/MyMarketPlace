@@ -13,3 +13,7 @@ class GoodsCategoryRepositoryInterface(ABC):
     @abstractmethod
     async def get_category_by_name(self, name: str) -> GoodCategory | None:
         raise NotImplementedError
+
+    @abstractmethod
+    async def add_category(self, category: GoodCategory) -> GoodCategory:
+        raise NotImplementedError
