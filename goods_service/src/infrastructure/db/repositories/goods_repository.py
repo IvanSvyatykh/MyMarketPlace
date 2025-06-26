@@ -27,7 +27,7 @@ class SQLAlchemyGoodsRepository(GoodsRepositoryInterface):
         try:
             await self._session.execute(
                 insert(GoodsModel).values(id=good.id, category_id=good.category_id, name=good.name,
-                                          price=str(good.price),
+                                          price=good.price,
                                           amount=good.amount))
             await self._session.commit()
         except Exception as e:
