@@ -14,7 +14,7 @@ class SQLAlchemyGoodsRepository(GoodsRepositoryInterface):
     async def get_goods(self, offset: int, limit: int) -> list[GoodAggregate]:
         res = await  (self._session
         .execute(
-            select(GoodsModel.id, GoodCategoryModel.name.label("category_name"), GoodsModel.name, GoodsModel.photo_url,
+            select(GoodsModel.id, GoodCategoryModel.name.label("category_name"), GoodsModel.name,
                    GoodsModel.price,
                    GoodsModel.amount)
             .join(GoodCategoryModel, GoodsModel.category_id == GoodCategoryModel.id)

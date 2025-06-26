@@ -7,7 +7,6 @@ class Good:
     id: uuid.UUID | None
     category_name: str
     name: str
-    photo_url: str | None
     price: float
     amount: int
 

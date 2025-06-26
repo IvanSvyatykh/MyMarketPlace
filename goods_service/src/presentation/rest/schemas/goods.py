@@ -10,6 +10,14 @@ class AddGoodRequest(BaseModel):
     amount: int = Field(default=0, ge=0)
 
 
+class AddGoodsResponse(BaseModel):
+    id: uuid.UUID
+    name: str
+    category_id: uuid.UUID
+    price: float = Field(default=0.0, ge=0.0)
+    amount: int = Field(default=0, ge=0)
+
+
 class GetGoodsRequest(BaseModel):
     offset: int = Field(default=0, ge=0)
     limit: int = Field(default=10, ge=0)
@@ -19,6 +27,5 @@ class GetGoodsResponse(BaseModel):
     id: uuid.UUID
     name: str
     category_name: str
-    photo_url: str
     price: float = Field(default=0.0, ge=0.0)
     amount: int = Field(default=0, ge=0)

@@ -1,6 +1,6 @@
-from goods_service.src.presentation.rest.schemas.goods import GetGoodsRequest
 from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
-from goods_service.src.presentation.rest.schemas.goods import GetGoodsResponse
+from goods_service.src.domain.agregates.good import Good
+from goods_service.src.domain.dto.goods import GetGoodsRequestDTO, GetGoodsResponseDTO
 
 
 class GetGoodsQuery:
@@ -8,8 +8,7 @@ class GetGoodsQuery:
     def __init__(self, repository: GoodsRepositoryInterface):
         self.repository = repository
 
-    async def execute(self, goods_request: GetGoodsRequest) -> list[GetGoodsResponse]:
-        goods = await  self.repository.get_goods(offset=goods_request.offset, limit=goods_request.limit)
-        return [GetGoodsResponse(id=good.id, name=good.name, category_name=good.category_name, photo_url=good.photo_url,
-                                 amount=good.amount, price=good.price) for good in goods
-                for good in goods]
+    async def execute(self, goods_query: GetGoodsRequestDTO) -> list[GetGoodsResponseDTO]:
+        goods = await  self.repository.get_goods(offset=goods_query.offset, limit=goods_query.limit)
+        return [GetGoodsResponseDTO(id=good.id, category_name=good.category_name, name=good.name, amount=good.amount,
+                                    price=good.price) for good in goods]
