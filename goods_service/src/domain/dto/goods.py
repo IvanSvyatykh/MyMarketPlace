@@ -14,3 +14,11 @@ class GetGoodsResponseDTO(BaseModel):
     name: str
     price: float = Field(ge=0.0)
     amount: int = Field(ge=0)
+
+
+
+class AddGoodRequestDTO(BaseModel):
+    name: str
+    category_name: str
+    price: float = Field(default=0.0, ge=0.0)
+    amount: int = Field(default=0, ge=0)

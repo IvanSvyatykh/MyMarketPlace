@@ -10,7 +10,7 @@ from goods_service.src.presentation.rest.dependencies.goods_dependencies import 
     get_goods_add_command, get_goods_category_add_command
 from goods_service.src.application.command.goods import AddGoodsCommand
 from goods_service.src.domain.enteties.photo import Photo
-from goods_service.src.domain.dto.goods import GetGoodsRequestDTO
+from goods_service.src.domain.dto.goods import GetGoodsRequestDTO, AddGoodRequestDTO
 
 goods_router = APIRouter(prefix="/goods/v1")
 
@@ -24,17 +24,19 @@ async def get_goods(goods_query: GetGoodsQuery = Depends(get_goods_get_query),
                              amount=good.amount, price=good.price) for good in goods]
 
 
-@goods_router.post("/good", status_code=status.HTTP_201_CREATED, response_model=AddGoodsResponse)
+@goods_router.post("/good", status_code=status.HTTP_201_CREATED, response_model=uuid.UUID)
 async def add_goods(request: AddGoodRequest,
-                    goods_command: AddGoodsCommand = Depends(get_goods_add_command)) -> AddGoodsResponse:
-    return await goods_command.execute(request)
+                    goods_command: AddGoodsCommand = Depends(get_goods_add_command)) -> uuid.UUID:
+    return await goods_command.execute(
+        AddGoodRequestDTO(name=request.name, category_name=request.category_name, price=request.price,
+                          amount=request.amount))
 
 
-@goods_router.post("/category", status_code=status.HTTP_201_CREATED, response_model=AddGoodsCategoryResponse)
+@goods_router.post("/category", status_code=status.HTTP_201_CREATED, response_model=uuid.UUID)
 async def add_category(request: AddGoodsCategoryRequest,
                        goods_category_command: AddGoodsCategoryCommand = Depends(
-                           get_goods_category_add_command)) -> AddGoodsCategoryResponse:
-    return await goods_category_command.execute(request)
+                           get_goods_category_add_command)) -> uuid.UUID:
+    return await goods_category_command.execute(request.category_name)
 
 
 @goods_router.put("/good/photo", status_code=status.HTTP_200_OK)
