@@ -27,7 +27,6 @@ class SQLAlchemyGoodsRepository(GoodsRepositoryInterface):
         try:
             await self._session.execute(
                 insert(GoodsModel).values(id=good.id, category_id=good.category_id, name=good.name,
-                                          photo_url=good.photo_url,
                                           price=str(good.price),
                                           amount=good.amount))
             await self._session.commit()

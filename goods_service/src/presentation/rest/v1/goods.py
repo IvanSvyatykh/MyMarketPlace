@@ -5,7 +5,7 @@ from fastapi.params import Depends
 from goods_service.src.application.command.goods_category import AddGoodsCategoryCommand
 from goods_service.src.application.query.goods import GetGoodsQuery
 from ..schemas.goods import GetGoodsResponse, GetGoodsRequest, AddGoodRequest, AddGoodsResponse
-from ..schemas.goods_category import AddGoodsCategoryRequest, AddGoodsCategoryResponse
+from ..schemas.goods_category import AddGoodsCategoryRequest
 from goods_service.src.presentation.rest.dependencies.goods_dependencies import get_goods_get_query, \
     get_goods_add_command, get_goods_category_add_command
 from goods_service.src.application.command.goods import AddGoodsCommand
