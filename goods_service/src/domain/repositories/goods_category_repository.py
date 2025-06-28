@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABC
-from ..enteties.goods_category import GoodCategory
+from ..enteties.good_category import GoodCategory
 
 from sqlalchemy.ext.asyncio import AsyncSession
 

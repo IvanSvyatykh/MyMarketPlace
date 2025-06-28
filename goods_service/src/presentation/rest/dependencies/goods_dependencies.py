@@ -2,14 +2,14 @@ from typing import AsyncGenerator, Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from goods_service.src.application.command.goods_category import AddGoodsCategoryCommand
+from goods_service.src.application.command.add_goods_category import AddGoodsCategoryCommand
 from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
 from goods_service.src.domain.repositories.goods_category_repository import GoodsCategoryRepositoryInterface
 from goods_service.src.domain.repositories.s3_repository import S3RepositoryInterface
 from goods_service.src.infrastructure.db.repositories.goods_repository import SQLAlchemyGoodsRepository
 from fastapi import Depends, Request
-from goods_service.src.application.query.goods import GetGoodsQuery
-from goods_service.src.application.command.goods import AddGoodsCommand
+from goods_service.src.application.query.get_goods import GetGoodsQuery
+from goods_service.src.application.command.add_good import AddGoodsCommand
 from goods_service.src.infrastructure.db.repositories.goods_category_repository import SQLAlchemyGoodsCategoryRepository
 from goods_service.src.infrastructure.s3.minio.minio_repository import S3MinioRepository
 

@@ -1,6 +1,5 @@
 from goods_service.src.domain.repositories.goods_repository import GoodsRepositoryInterface
-from goods_service.src.domain.agregates.good import Good
-from goods_service.src.domain.dto.goods import GetGoodsRequestDTO, GetGoodsResponseDTO
+from goods_service.src.application.dto.goods import GetGoodsRequestDTO, GetGoodsResponseDTO
 
 
 class GetGoodsQuery:

@@ -1,7 +1,7 @@
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from goods_service.src.domain.enteties.goods_category import GoodCategory
+from goods_service.src.domain.enteties.good_category import GoodCategory
 from goods_service.src.domain.repositories.goods_category_repository import GoodsCategoryRepositoryInterface
 from sqlalchemy import select, insert, update, delete
 from ..models.model import GoodCategoryModel

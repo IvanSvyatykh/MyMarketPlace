@@ -2,15 +2,14 @@ import uuid
 
 from fastapi import APIRouter, Query, UploadFile, File, status
 from fastapi.params import Depends
-from goods_service.src.application.command.goods_category import AddGoodsCategoryCommand
-from goods_service.src.application.query.goods import GetGoodsQuery
-from ..schemas.goods import GetGoodsResponse, GetGoodsRequest, AddGoodRequest, AddGoodsResponse
+from goods_service.src.application.command.add_goods_category import AddGoodsCategoryCommand
+from goods_service.src.application.query.get_goods import GetGoodsQuery
+from ..schemas.goods import GetGoodsResponse, AddGoodRequest, AddGoodPhotosRequest
 from ..schemas.goods_category import AddGoodsCategoryRequest
 from goods_service.src.presentation.rest.dependencies.goods_dependencies import get_goods_get_query, \
     get_goods_add_command, get_goods_category_add_command
-from goods_service.src.application.command.goods import AddGoodsCommand
-from goods_service.src.domain.enteties.photo import Photo
-from goods_service.src.domain.dto.goods import GetGoodsRequestDTO, AddGoodRequestDTO
+from goods_service.src.application.command.add_good import AddGoodsCommand
+from goods_service.src.application.dto.goods import GetGoodsRequestDTO, AddGoodRequestDTO
 
 goods_router = APIRouter(prefix="/goods/v1")
 
@@ -40,7 +39,5 @@ async def add_category(request: AddGoodsCategoryRequest,
 
 
 @goods_router.put("/good/photo", status_code=status.HTTP_200_OK)
-async def add_photos_to_good(good_id: uuid.UUID, files: list[UploadFile] = File(...)) -> None:
-    photos = []
-    for file in files:
-        photos.append(Photo(content=await file.read(), filename=file.filename, content_type=file.content_type))
+async def add_photos_to_good(request: AddGoodPhotosRequest, files: list[UploadFile] = File(...)) -> None:
+    raise NotImplementedError
