@@ -31,12 +31,3 @@ class AddGoodsCommand:
             raise e
 
         return good.id
-
-
-class AddGoodsPhotoCommand:
-    def __init__(self, goods_repository: GoodsRepositoryInterface, s3_repository: S3RepositoryInterface):
-        self.__goods_repository = goods_repository
-        self.__s3_repository = s3_repository
-
-    async def execute(self) -> None:
-        pass

@@ -19,7 +19,3 @@ class GetGoodsResponse(BaseModel):
     price: float = Field(default=0.0, ge=0.0)
     amount: int = Field(default=0, ge=0)
 
-
-class AddGoodPhotosRequest(BaseModel):
-    good_id : uuid.UUID
-    description :str

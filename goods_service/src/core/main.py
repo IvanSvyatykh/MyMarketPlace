@@ -17,10 +17,10 @@ from goods_service.src.core.config import DATABASE_URL
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.state.minio_client = Minio(endpoint=f"{MINIO_HOST}:{MINIO_API_PORT}",
-                                   access_key=MINIO_ACCESS_KEY,
-                                   secret_key=MINIO_SECRET_KEY,
-                                   secure=USE_HTTPS)
+    app.state.s3_client = Minio(endpoint=f"{MINIO_HOST}:{MINIO_API_PORT}",
+                                access_key=MINIO_ACCESS_KEY,
+                                secret_key=MINIO_SECRET_KEY,
+                                secure=USE_HTTPS)
 
     engine = create_async_engine(DATABASE_URL, pool_size=10,
                                  max_overflow=20, )
@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI):
     app.state.async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
 
     yield
-    await app.state.minio_client.close_session()
+    await app.state.s3_client.close_session()
 
 
 app = FastAPI(lifespan=lifespan)

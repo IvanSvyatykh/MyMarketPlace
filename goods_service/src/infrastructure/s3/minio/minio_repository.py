@@ -1,7 +1,5 @@
 from io import BytesIO
 
-import aiohttp
-
 from goods_service.src.domain.repositories.s3_repository import S3RepositoryInterface
 from miniopy_async import Minio
 
@@ -11,7 +9,7 @@ class S3MinioRepository(S3RepositoryInterface):
     def __init__(self, minio_client: Minio):
         self.__minio_client = minio_client
 
-    async def upload_file(self, bucket_name: str, file_bytes: bytes, object_name: str) -> None:
+    async def upload_file(self, bucket_name: str, file_bytes: bytes, object_name: str) -> str:
         if not await self.__minio_client.bucket_exists(bucket_name):
             await self.__minio_client.make_bucket(bucket_name=bucket_name)
         await self.__minio_client.put_object(
@@ -20,6 +18,8 @@ class S3MinioRepository(S3RepositoryInterface):
             data=BytesIO(file_bytes),
             length=len(file_bytes),
         )
+        url = await self.__minio_client.presigned_get_object(bucket_name=bucket_name, object_name=object_name)
+        return url
 
     async def get_file(self, bucket_name: str, object_name: str) -> bytes:
         async with await self.__minio_client.get_object(

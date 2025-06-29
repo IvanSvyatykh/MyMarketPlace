@@ -1,19 +1,20 @@
-from pydantic import BaseModel, field_validator
+import uuid
 
 
-class Photo(BaseModel):
-    content: bytes
-    filename: str
-    content_type: str
+class Photo:
+    def __init__(self, content: bytes, filename: str, content_type: str) -> None:
+        self.__content = content
+        self.__filename = str(uuid.uuid4()) + "." + filename.split('.')[-1]
+        self.__content_type = content_type
 
-    @field_validator("content")
-    def validate_size(cls, v):
-        if len(v) > 10 * 1024 * 1024:  # 10 MB
-            raise ValueError("Photo size exceeds 10 MB")
-        return v
+    @property
+    def content(self) -> bytes:
+        return self.__content
 
-    @field_validator("content_type")
-    def validate_type(cls, v):
-        if v not in {"image/jpeg", "image/png"}:
-            raise ValueError("Invalid image type")
-        return v
+    @property
+    def filename(self) -> str:
+        return self.__filename
+
+    @property
+    def content_type(self) -> str:
+        return self.__content_type

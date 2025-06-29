@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class S3RepositoryInterface(ABC):
 
     @abstractmethod
-    async def upload_file(self, bucket_name: str, file_bytes: bytes, object_name: str) -> None:
+    async def upload_file(self, bucket_name: str, file_bytes: bytes, object_name: str) -> str:
         raise NotImplementedError
 
     @abstractmethod
