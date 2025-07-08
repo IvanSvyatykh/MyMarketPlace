@@ -8,7 +8,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import declarative_base
 
-from src.core.config import DB_SCHEMA
+from auth_service.src.core.config import DB_SCHEMA
 
 Base = declarative_base()
 Base.metadata.schema = DB_SCHEMA

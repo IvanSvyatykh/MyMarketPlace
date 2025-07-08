@@ -3,7 +3,7 @@
 import grpc
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
-import auth_pb2 as auth__pb2
+from auth_service.src.presentation.grpc.generated import auth_pb2 as auth__pb2
 
 GRPC_GENERATED_VERSION = '1.73.1'
 GRPC_VERSION = grpc.__version__
@@ -11,6 +11,7 @@ _version_not_supported = False
 
 try:
     from grpc._utilities import first_version_is_lower
+
     _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)
 except ImportError:
     _version_not_supported = True
@@ -35,10 +36,10 @@ class RegistrationServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Register = channel.unary_unary(
-                '/auth.RegistrationService/Register',
-                request_serializer=auth__pb2.RegisterRequest.SerializeToString,
-                response_deserializer=auth__pb2.RegisterResponse.FromString,
-                _registered_method=True)
+            '/auth.RegistrationService/Register',
+            request_serializer=auth__pb2.RegisterRequest.SerializeToString,
+            response_deserializer=auth__pb2.RegisterResponse.FromString,
+            _registered_method=True)
 
 
 class RegistrationServiceServicer(object):
@@ -53,33 +54,33 @@ class RegistrationServiceServicer(object):
 
 def add_RegistrationServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Register': grpc.unary_unary_rpc_method_handler(
-                    servicer.Register,
-                    request_deserializer=auth__pb2.RegisterRequest.FromString,
-                    response_serializer=auth__pb2.RegisterResponse.SerializeToString,
-            ),
+        'Register': grpc.unary_unary_rpc_method_handler(
+            servicer.Register,
+            request_deserializer=auth__pb2.RegisterRequest.FromString,
+            response_serializer=auth__pb2.RegisterResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'auth.RegistrationService', rpc_method_handlers)
+        'auth.RegistrationService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
     server.add_registered_method_handlers('auth.RegistrationService', rpc_method_handlers)
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class RegistrationService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def Register(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                 target,
+                 options=(),
+                 channel_credentials=None,
+                 call_credentials=None,
+                 insecure=False,
+                 compression=None,
+                 wait_for_ready=None,
+                 timeout=None,
+                 metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -107,15 +108,15 @@ class UserServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GetUserProfile = channel.unary_unary(
-                '/auth.UserService/GetUserProfile',
-                request_serializer=auth__pb2.GetUserRequest.SerializeToString,
-                response_deserializer=auth__pb2.GetUserResponse.FromString,
-                _registered_method=True)
+            '/auth.UserService/GetUserProfile',
+            request_serializer=auth__pb2.GetUserRequest.SerializeToString,
+            response_deserializer=auth__pb2.GetUserResponse.FromString,
+            _registered_method=True)
         self.UpdatePassword = channel.unary_unary(
-                '/auth.UserService/UpdatePassword',
-                request_serializer=auth__pb2.UpdatePasswordRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
+            '/auth.UserService/UpdatePassword',
+            request_serializer=auth__pb2.UpdatePasswordRequest.SerializeToString,
+            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            _registered_method=True)
 
 
 class UserServiceServicer(object):
@@ -136,38 +137,38 @@ class UserServiceServicer(object):
 
 def add_UserServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetUserProfile': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetUserProfile,
-                    request_deserializer=auth__pb2.GetUserRequest.FromString,
-                    response_serializer=auth__pb2.GetUserResponse.SerializeToString,
-            ),
-            'UpdatePassword': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdatePassword,
-                    request_deserializer=auth__pb2.UpdatePasswordRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
+        'GetUserProfile': grpc.unary_unary_rpc_method_handler(
+            servicer.GetUserProfile,
+            request_deserializer=auth__pb2.GetUserRequest.FromString,
+            response_serializer=auth__pb2.GetUserResponse.SerializeToString,
+        ),
+        'UpdatePassword': grpc.unary_unary_rpc_method_handler(
+            servicer.UpdatePassword,
+            request_deserializer=auth__pb2.UpdatePasswordRequest.FromString,
+            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'auth.UserService', rpc_method_handlers)
+        'auth.UserService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
     server.add_registered_method_handlers('auth.UserService', rpc_method_handlers)
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class UserService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def GetUserProfile(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                       target,
+                       options=(),
+                       channel_credentials=None,
+                       call_credentials=None,
+                       insecure=False,
+                       compression=None,
+                       wait_for_ready=None,
+                       timeout=None,
+                       metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -186,15 +187,15 @@ class UserService(object):
 
     @staticmethod
     def UpdatePassword(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                       target,
+                       options=(),
+                       channel_credentials=None,
+                       call_credentials=None,
+                       insecure=False,
+                       compression=None,
+                       wait_for_ready=None,
+                       timeout=None,
+                       metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -222,15 +223,15 @@ class AuthServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Login = channel.unary_unary(
-                '/auth.AuthService/Login',
-                request_serializer=auth__pb2.LoginRequest.SerializeToString,
-                response_deserializer=auth__pb2.LoginResponse.FromString,
-                _registered_method=True)
+            '/auth.AuthService/Login',
+            request_serializer=auth__pb2.LoginRequest.SerializeToString,
+            response_deserializer=auth__pb2.LoginResponse.FromString,
+            _registered_method=True)
         self.Logout = channel.unary_unary(
-                '/auth.AuthService/Logout',
-                request_serializer=auth__pb2.LogoutRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
+            '/auth.AuthService/Logout',
+            request_serializer=auth__pb2.LogoutRequest.SerializeToString,
+            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            _registered_method=True)
 
 
 class AuthServiceServicer(object):
@@ -251,38 +252,38 @@ class AuthServiceServicer(object):
 
 def add_AuthServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Login': grpc.unary_unary_rpc_method_handler(
-                    servicer.Login,
-                    request_deserializer=auth__pb2.LoginRequest.FromString,
-                    response_serializer=auth__pb2.LoginResponse.SerializeToString,
-            ),
-            'Logout': grpc.unary_unary_rpc_method_handler(
-                    servicer.Logout,
-                    request_deserializer=auth__pb2.LogoutRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
+        'Login': grpc.unary_unary_rpc_method_handler(
+            servicer.Login,
+            request_deserializer=auth__pb2.LoginRequest.FromString,
+            response_serializer=auth__pb2.LoginResponse.SerializeToString,
+        ),
+        'Logout': grpc.unary_unary_rpc_method_handler(
+            servicer.Logout,
+            request_deserializer=auth__pb2.LogoutRequest.FromString,
+            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'auth.AuthService', rpc_method_handlers)
+        'auth.AuthService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
     server.add_registered_method_handlers('auth.AuthService', rpc_method_handlers)
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class AuthService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def Login(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+              target,
+              options=(),
+              channel_credentials=None,
+              call_credentials=None,
+              insecure=False,
+              compression=None,
+              wait_for_ready=None,
+              timeout=None,
+              metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -301,15 +302,15 @@ class AuthService(object):
 
     @staticmethod
     def Logout(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+               target,
+               options=(),
+               channel_credentials=None,
+               call_credentials=None,
+               insecure=False,
+               compression=None,
+               wait_for_ready=None,
+               timeout=None,
+               metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
